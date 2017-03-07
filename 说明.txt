@@ -1,0 +1,15 @@
+
+参考：
+http://www.cnblogs.com/xuekyo/archive/2013/03/06/2945826.html
+
+心跳：
+对空闲的处理可以看做一次心跳：sessionIdle()
+
+可参考netty的处理说明：
+http://www.cnblogs.com/luxiaoxun/archive/2015/01/28/4257105.html
+当某个设备Device由于断电或是其他原因导致设备不正常无法采集数据，Netty服务端需要知道该设备是否在正常工作，可以使用Netty的IdleStateHandler
+上面设置3分钟没有读到数据，则触发一个READER_IDLE事件。
+
+
+
+

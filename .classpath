@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="minaLib/mina-core-2.0.9.jar"/>
+	<classpathentry kind="lib" path="minaLib/mina-integration-beans-2.0.9.jar"/>
+	<classpathentry kind="lib" path="minaLib/mina-integration-jmx-2.0.9.jar"/>
+	<classpathentry kind="lib" path="minaLib/mina-integration-ognl-2.0.9.jar"/>
+	<classpathentry kind="lib" path="minaLib/mina-integration-xbean-2.0.9.jar"/>
+	<classpathentry kind="lib" path="minaLib/slf4j-api-1.6.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
