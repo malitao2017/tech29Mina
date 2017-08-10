@@ -14,22 +14,24 @@ public class MinaTimeClient {
 	public static void main(String[] args) throws InterruptedException {
         // 创建客户端连接器.
 		NioSocketConnector connector = new NioSocketConnector();
+		// 设置日志记录器
 		connector.getFilterChain().addLast("logger", new LoggingFilter());
-		connector.getFilterChain().addLast("codec", 
-			new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
+		// 设置编码过滤器
+		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
         // 设置连接超时检查时间
 		connector.setConnectTimeoutCheckInterval(30);
+		// 指定业务逻辑处理器
 		connector.setHandler(new TimeClientHandler());
 
         // 建立连接
-		ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1",6488));
+		ConnectFuture future = connector.connect(new InetSocketAddress("127.0.0.1",6488));
         // 等待连接创建完成--阻塞式的
-		cf.awaitUninterruptibly();
-		cf.getSession().write("Hi Server");
-		Thread.sleep(10*1000);
-		cf.getSession().write("quit");
+		future.awaitUninterruptibly();
+		future.getSession().write("Hi Server");
+		Thread.sleep(30*1000);
+		future.getSession().write("quit");
 	    // 等待连接断开
-		cf.getSession().getCloseFuture().awaitUninterruptibly();
+		future.getSession().getCloseFuture().awaitUninterruptibly();
 		// 释放连接
 		connector.dispose();
 	}

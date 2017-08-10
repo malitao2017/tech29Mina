@@ -12,7 +12,7 @@ public class TimeServerHandler extends IoHandlerAdapter{
      */
 	@Override
 	public void sessionCreated(IoSession iosession) throws Exception {
-		System.out.println(iosession.getRemoteAddress().toString());
+		System.out.println("服务端接入了一个客户端为："+iosession.getRemoteAddress().toString());
 	}
 	
 	@Override
@@ -25,18 +25,18 @@ public class TimeServerHandler extends IoHandlerAdapter{
 	@Override
 	public void messageReceived(IoSession iosession, Object message) throws Exception {
 		String strMsg = message.toString();
+        // 打印客户端传来的消息内容
+		System.out.println("服务端接受消息: （ "+strMsg +" ）同时发送了一条消息");
 		if(strMsg.trim().equalsIgnoreCase("quit")){
 			iosession.close(true);
 			return;
 		}
         // 返回消息字符串
-		iosession.write("Hi Client!");
-        // 打印客户端传来的消息内容
-		System.out.println("客户端发过来 Message write: "+strMsg);
+		iosession.write("(server message - Hi Client!)");
 	}
 	
 	@Override
 	public void sessionIdle(IoSession iosession, IdleStatus idlestatus) throws Exception {
-		System.out.println("空闲信息 IDLE 可看做心跳: "+iosession.getIdleCount(idlestatus));
+		System.out.println("服务端空闲信息 IDLE可看做心跳: "+iosession.getIdleCount(idlestatus));
 	}
 }

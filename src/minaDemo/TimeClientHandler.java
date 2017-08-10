@@ -13,6 +13,6 @@ public class TimeClientHandler extends IoHandlerAdapter{
 
 	@Override
 	public void messageSent(IoSession iosession, Object message) throws Exception {
-		System.out.println("客户端发送： messageSent->"+message);
+		System.out.println("客户端发送消息："+message);
 	}
 }
